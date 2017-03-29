@@ -688,13 +688,22 @@ abstract class BaseFacebook
       return false;
     }
 
-    $response_params = array();
-    parse_str($access_token_response, $response_params);
-    if (!isset($response_params['access_token'])) {
-      return false;
-    }
+    // access token is returned as JSON from API v2.3.
+    // See http://stackoverflow.com/questions/42994019/facebook-graph-api-not-work-from-2-2-to-2-3
 
-    return $response_params['access_token'];
+     $response = json_decode($access_token_response);
+     if (!isset($response->access_token)) {
+          return false;
+     }
+     return $response->access_token;
+
+//    $response_params = array();
+//    parse_str($access_token_response, $response_params);
+//    if (!isset($response_params['access_token'])) {
+//      return false;
+//    }
+//
+//    return $response_params['access_token'];
   }
 
   /**
