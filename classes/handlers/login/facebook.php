@@ -15,7 +15,7 @@ class nxcSocialNetworksLoginHandlerFacebook extends nxcSocialNetworksLoginHandle
 	}
 
 	public function getScopes() {
-		return array( 'email', 'user_about_me', 'user_photos' );
+		return array( 'email', 'user_about_me', 'user_photos', 'first_name', 'last_name' );
 	}
 
 	public function getCallbackURL() {
